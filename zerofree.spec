@@ -9,7 +9,7 @@ Source0:	http://intgat.tigress.co.uk/rmy/uml/%{name}-%{version}.tgz
 Source1:	http://intgat.tigress.co.uk/rmy/uml/sparsify.c
 # Source1-md5:	919ad782c7120d1e4a9c0ccc9f45b8ef
 Source2:	http://intgat.tigress.co.uk/rmy/uml/index.html
-# Source2-md5:	b30d82b3980d2cbfe7f299cd646e7018
+# Source2-md5:	b7ab83b45706013757af28d9bba641cc
 Source3:	%{name}.sgml
 # Source3-md5:	694621b0e046c34a674da25f8328585b
 URL:		http://intgat.tigress.co.uk/rmy/uml/
