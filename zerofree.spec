@@ -13,7 +13,7 @@ Source2:	http://intgat.tigress.co.uk/rmy/uml/index.html
 Source3:	%{name}.sgml
 # Source3-md5:	694621b0e046c34a674da25f8328585b
 URL:		http://intgat.tigress.co.uk/rmy/uml/
-BuildRequires:	e2fsprogs-devel
+BuildRequires:	e2fsprogs-devel >= 1.41
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
