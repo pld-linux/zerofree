@@ -1,4 +1,5 @@
 Summary:	Utility to force unused ext2 inodes and blocks to zero
+Summary(pl.UTF-8):	Narzędzie wymuszające wyzerowanie nie używanych i-węzłów i bloków ext2
 Name:		zerofree
 Version:	1.0.3
 Release:	1
@@ -13,6 +14,7 @@ Source2:	http://intgat.tigress.co.uk/rmy/uml/index.html
 Source3:	%{name}.sgml
 # Source3-md5:	694621b0e046c34a674da25f8328585b
 URL:		http://intgat.tigress.co.uk/rmy/uml/
+BuildRequires:	docbook-to-man
 BuildRequires:	e2fsprogs-devel >= 1.41
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -27,6 +29,18 @@ patch described in a Linux kernel mailing list thread.
 WARNING: The filesystem to be processed should be unmounted or mounted
 read-only. The tool tries to check this before running, but you should
 be careful.
+
+%description -l pl.UTF-8
+zerofree to narzędzie zerujące nie używane i-węzły i bloki systemu
+plików ext2. To może poprawić kompresowalność i prywatność systemu
+plików.
+
+Narzędzie było inspirowane łatką prywatności (bezpiecznego usuwania)
+dla ext2fs, opisaną w wątku listy dyskusyjnej jądra Linuksa.
+
+UWAGA: system plików do przetwarzania powinien być odmontowany lub
+zamontowany tylko do odczytu. Narzędzie próbuje sprawdzić to przed
+działaniem, ale trzeba być ostrożnym.
 
 %prep
 %setup -q
