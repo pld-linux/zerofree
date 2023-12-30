@@ -1,19 +1,19 @@
 Summary:	Utility to force unused ext2 inodes and blocks to zero
 Summary(pl.UTF-8):	Narzędzie wymuszające wyzerowanie nie używanych i-węzłów i bloków ext2
 Name:		zerofree
-Version:	1.0.3
+Version:	1.1.1
 Release:	1
-License:	GPL+
+License:	GPL v2+
 Group:		Applications/System
-Source0:	http://intgat.tigress.co.uk/rmy/uml/%{name}-%{version}.tgz
-# Source0-md5:	7fffca9639a2acc9c889c49b3f94a0c6
-Source1:	http://intgat.tigress.co.uk/rmy/uml/sparsify.c
+Source0:	https://frippery.org/uml/%{name}-%{version}.tgz
+# Source0-md5:	4f2d6bdba4212e54eb7dd22a8fbb6d29
+Source1:	https://frippery.org/uml/sparsify.c
 # Source1-md5:	919ad782c7120d1e4a9c0ccc9f45b8ef
-Source2:	http://intgat.tigress.co.uk/rmy/uml/index.html
+Source2:	https://frippery.org/uml/index.html
 # Source2-md5:	b7ab83b45706013757af28d9bba641cc
 Source3:	%{name}.sgml
 # Source3-md5:	694621b0e046c34a674da25f8328585b
-URL:		http://intgat.tigress.co.uk/rmy/uml/
+URL:		https://frippery.org/uml/
 BuildRequires:	docbook-to-man
 BuildRequires:	e2fsprogs-devel >= 1.41
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -50,14 +50,17 @@ cp -p %{SOURCE3} .
 
 %build
 %{__make} \
-	CC="%{__cc} %{rpmcflags}"
-%{__cc} %{rpmcflags} sparsify.c -o sparsify -lext2fs
+	CC="%{__cc}" \
+	CFLAGS="%{rpmldflags} %{rpmcflags} %{rpmcppflags}"
+
+%{__cc} %{rpmldflags} %{rpmcflags} %{rpmcppflags} sparsify.c -o sparsify -lext2fs
 
 docbook-to-man zerofree.sgml > zerofree.8
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/man8}
+
 install -p zerofree $RPM_BUILD_ROOT%{_sbindir}
 install -p sparsify $RPM_BUILD_ROOT%{_sbindir}
 cp -p zerofree.8 $RPM_BUILD_ROOT%{_mandir}/man8
@@ -67,7 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc COPYING index.html
+%doc index.html
 %attr(755,root,root) %{_sbindir}/zerofree
 %attr(755,root,root) %{_sbindir}/sparsify
 %{_mandir}/man8/zerofree.8*
